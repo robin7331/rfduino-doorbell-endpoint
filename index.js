@@ -22,6 +22,12 @@ noble.on('discover', (peripheral) => {
 
     noble.stopScanning();
 
+    peripheral.once('disconnect', () => {
+      setTimeout(function() {
+          noble.startScanning([], true);
+      }, 1000);
+    });
+
     peripheral.connect(() => {
 
       peripheral.discoverServices(['2220'], (error, services) => {
