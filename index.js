@@ -23,6 +23,7 @@ noble.on('discover', (peripheral) => {
     noble.stopScanning();
 
     peripheral.once('disconnect', () => {
+      console.log("Lost BT connection to the RFDuino!")
       setTimeout(function() {
           noble.startScanning([], true);
       }, 1000);
